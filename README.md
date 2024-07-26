@@ -9,7 +9,7 @@ Appointment booking agent using an LLM-based chatbot powered by OpenAI GPT-4o-mi
 2. Run `pip install -r requirements.txt`.
 
 ### Option 2 (Recommended): Using Conda Environment
-1. Install Conda or Miniconda.
+1. Install Conda or Miniconda (https://conda.io/projects/conda/en/latest/user-guide/install/index.html).
 2. Run `conda env create -f environment.yml`.
 3. Activate the environment with `conda activate booking_agent`.
 
