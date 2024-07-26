@@ -14,10 +14,18 @@ Appointment booking agent using an LLM-based chatbot powered by OpenAI GPT-4o-mi
 3. Activate the environment with `conda activate booking_agent`.
 
 ## Running the Project
-1. Start the server by running `python server.py`.
-2. If the server is running, you should see the following messages:
+1. Set OPENAI_API_KEY, either as environment variable or directly in server.py
+```
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    
+    if not OPENAI_API_KEY:
+        # If you don't have OPENAI_API_KEY set in env variable, please put your API key here to try
+        OPENAI_API_KEY = ""
+```
+2. Start the server by running `python server.py`.
+3. If the server is running, you should see the following messages:
     ```
     INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
     INFO:     127.0.0.1:59423 - "OPTIONS /chat HTTP/1.1" 200 OK
     ```
-3. Open `index.html` in your web browser to access the UI.
+4. Open `index.html` in your web browser to access the UI.
