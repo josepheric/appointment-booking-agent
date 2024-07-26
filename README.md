@@ -1,5 +1,5 @@
 # Appointment Booking Chatbot
-Appointment booking agent using an LLM-based chatbot powered by OpenAI GPT-4o-mini and LangGraph.  a
+Appointment booking agent using an LLM-based chatbot powered by OpenAI GPT-4o-mini and LangGraph.
 
 ## Installing requirements
 1. Clone this repository.
