@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<header>
+<title>Appoint Booking Chat</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
+</header>
+<body>
+
+<div class="flex-1 p:2 sm:p-6 justify-between flex flex-col h-screen">
+   <div class="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
+      <div class="relative flex items-center space-x-4">
+         <div class="relative">
+            <span class="absolute text-green-500 right-0 bottom-0">
+               <svg width="20" height="20">
+                  <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
+               </svg>
+            </span>
+         <img src="https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="" class="w-10 sm:w-16 h-10 sm:h-16 rounded-full">
+         </div>
+         <div class="flex flex-col leading-tight">
+            <div class="text-2xl mt-1 flex items-center">
+               <span class="text-gray-700 mr-3">Example Inc.</span>
+            </div>
+            <span class="text-lg text-gray-600">Susanne</span>
+         </div>
+      </div>
+   </div>
+   <div id="messages" class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
+      <div class="chat-message">
+         <div class="flex items-end justify-end">
+            <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
+               <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">Hello. Welcome to Example Inc. Do you want to book an appointment?</span></div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-6 h-6 rounded-full order-2">
+         </div>
+      </div>
+   </div>
+   <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
+      <div class="relative flex">
+         <input id="inputBox" type="text" placeholder="Write your message!" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3">
+         <div class="absolute right-0 items-center inset-y-0 hidden sm:flex">
+            <button id="submit" type="button" class="inline-flex items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none">
+               <span class="font-bold">Send</span>
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6 ml-2 transform rotate-90">
+                  <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+               </svg>
+            </button>
+         </div>
+      </div>
+   </div>
+</div>
+
+<style>
+.scrollbar-w-2::-webkit-scrollbar {
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+.scrollbar-track-blue-lighter::-webkit-scrollbar-track {
+  --bg-opacity: 1;
+  background-color: #f7fafc;
+  background-color: rgba(247, 250, 252, var(--bg-opacity));
+}
+
+.scrollbar-thumb-blue::-webkit-scrollbar-thumb {
+  --bg-opacity: 1;
+  background-color: #edf2f7;
+  background-color: rgba(237, 242, 247, var(--bg-opacity));
+}
+
+.scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
+  border-radius: 0.25rem;
+}
+</style>
+
+<script>
+	const el = document.getElementById('messages')
+	el.scrollTop = el.scrollHeight
+
+	function create_user_message(text) {
+		const chat = document.createElement("div")
+		chat.className = "chat-message"
+		const container = document.createElement("div")
+		container.className = "flex items-end"
+		const msgs = document.createElement("div")
+		msgs.className = "flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start"
+		const msg = document.createElement("div")
+		const content = document.createElement("span")
+		content.className = "px-4 py-2 rounded-lg inline-block bg-gray-300 text-gray-600"
+		content.textContent = text
+		const img = document.createElement("img")
+		img.src = "https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
+		img.alt="Profile"
+		img.className="w-6 h-6 rounded-full order-1"
+
+		msg.appendChild(content)
+		msgs.appendChild(msg)
+		container.appendChild(msgs)
+		container.appendChild(img)
+		chat.appendChild(container)
+
+		return chat
+	}
+
+	function create_ai_message(text) {
+		const chat = document.createElement("div")
+		chat.className = "chat-message"
+		const container = document.createElement("div")
+		container.className = "flex items-end justify-end"
+		const msgs = document.createElement("div")
+		msgs.className = "flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end"
+		const msg = document.createElement("div")
+		const content = document.createElement("span")
+		content.className = "px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white "
+		content.textContent = text 
+		const img = document.createElement("img")
+		img.src = "https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
+		img.alt="Profile"
+		img.className="w-6 h-6 rounded-full order-2"
+
+		msg.appendChild(content)
+		msgs.appendChild(msg)
+		container.appendChild(msgs)
+		container.appendChild(img)
+		chat.appendChild(container)
+
+		return chat
+	}
+
+	document.getElementById("submit").addEventListener("click", function() {
+		const inputEl = document.getElementById("inputBox")
+		const input = inputEl.value
+		if(!input || input === "") return;
+
+		const el = document.getElementById('messages')
+		const user = create_user_message(input)
+
+
+
+		el.appendChild(user)
+		el.scrollTop = el.scrollHeight
+
+		inputEl.value = ""
+
+
+		fetch("http://127.0.0.1:8000/chat", {
+			method: "POST",
+			body: JSON.stringify({'message': {'content': input, 'id': chat_id}}),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}).then(response => 
+			response.json()
+		).then(json => json.message.content
+		).catch(error => {
+			return "No connection to Agent. Please make your agent available under localhost:8000/chat."
+		}).then(msg => 
+		{
+			const ai = create_ai_message(msg)
+			el.appendChild(ai)
+			el.scrollTop = el.scrollHeight
+		})
+
+	})
+
+	function uuidv4() {
+	  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
+	    (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
+	  );
+	}
+	chat_id = uuidv4()
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
+</body>
+</html>
+

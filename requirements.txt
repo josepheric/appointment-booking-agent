@@ -1,0 +1,4 @@
+fastapi==0.111.1
+pandas==2.2.2
+langgraph==0.1.9
+langchain-openai==0.1.17
